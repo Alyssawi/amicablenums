@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Amicable Numbers</title>
+    <script language="javascript">
+        function isAmicable() {
+            var num1 = document.getElementById("num1").value;
+            var num2 = document.getElementById("num2").value;
+            const num1Factors = getFactors(num1);
+            const num2Factors = getFactors(num2);
+            
+            if (getSum(num1Factors) == num2 && getSum(num2Factors) == num1) {
+                document.getElementById("result").innerHTML = "The numbers " + num1 + " and " + num2 + " are amicable";
+            } else {
+                document.getElementById("result").innerHTML = "The numbers " + num1 + " and " + num2 + " are not amicable";
+            }
+            document.getElementById("num1Factors").innerHTML = num1 + "'s factors are " + num1Factors.toString();
+            document.getElementById("num2Factors").innerHTML = num2 + "'s factors are " + num2Factors.toString();
+        }
+
+        function isAFactor(factor, num) {
+            if (num % factor == 0) {
+                return true;
+            }
+            return false;
+        }
+
+        function getFactors(num) {
+            const factors = new Array();
+            for (let i = 1; i < num; i++) {
+                if (isAFactor(i, num)) {
+                    factors.push(i);
+                }
+            }
+            return factors;
+        }
+
+        function getSum(numbers) {
+            var sum = 0;
+            for (let i = 0; i < numbers.length; i++) {
+                sum += numbers[i];
+            }
+            return sum;
+        }
+    </script>
+</head>
+<body>
+    <h1>Amicable Numbers</h1>
+    <div>
+        <form name="numbers">
+            <input type="number" id="num1">
+            <input type="number" id="num2">
+            <input type="button" value="Submit" onclick="isAmicable()">
+        </form>
+    </div>
+    <div>
+        <p id="result"></p>
+    </div>
+    <div>
+        <p id="num1Factors"></p>
+        <p id="num2Factors"></p>
+    </div>
+</body>
+</html>
